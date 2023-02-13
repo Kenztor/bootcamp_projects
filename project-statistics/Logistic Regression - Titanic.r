@@ -65,7 +65,7 @@ mean(test_data$Survived == test_data$pred_Survived)
 conM_train <- table(train_data$pred_Survived, train_data$Survived ,
               dnn = c("Predicted", "Actual"))
 conM_test <- table(test_data$pred_Survived, test_data$Survived ,
-                    dnn = c("Predicted", "Actual"))
+              dnn = c("Predicted", "Actual"))
 ## Model Evaluation Train
 acc_train <-(conM_train[1,1]+conM_train[2,2])/sum(conM_train)
 precision_train <- (conM_train[2,2]/(conM_train[2,1]+conM_train[2,2]))
