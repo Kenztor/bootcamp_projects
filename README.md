@@ -1,8 +1,8 @@
 # Bootcamp_Projects
 
-Data science bootcamp with DataRockie
+Data Bootcamp
 
-We learn 10 sprints during 4 month program.
+We learn 
 
 - Basic Data Knowledge
 - Spreadsheets
@@ -12,3 +12,4 @@ We learn 10 sprints during 4 month program.
 - Data Visualization & Dashboard
 - Statistics
 - Machine Learning 101
+- Dashboard Design Principles
