@@ -1,17 +1,17 @@
 --- 1.Total number of customers located in each continent
 
-SELECT 
+SELECT
 	region,
 	COUNT(*) AS n_sub
 FROM (
-	SELECT 
+	SELECT
 	   country,
     	   CASE 
     	    WHEN country IN ('USA', 'Canada') THEN 'North America'
-	        WHEN country IN ('Brazil') THEN 'South America'
-          WHEN country IN ('Italy', 'Belgium', 'Germany', 'Denmark', 'Portugal') THEN 'Europe'
+	    WHEN country IN ('Brazil') THEN 'South America'
+            WHEN country IN ('Italy', 'Belgium', 'Germany', 'Denmark', 'Portugal') THEN 'Europe'
     	    ELSE 'Other Regions'
-         END AS region
+           END AS region
 	FROM customers
 ) AS sub
 GROUP BY 1
@@ -20,12 +20,12 @@ ORDER BY 2 DESC -- descending order high to low
 -- refactor using WITH clause
 
 WITH sub AS (
-	SELECT 
+	SELECT
 	   country,
-         CASE 
+         CASE
     	    WHEN country IN ('USA', 'Canada') THEN 'North America'
-	        WHEN country IN ('Brazil') THEN 'South America'
-          WHEN country IN ('Italy', 'Belgium', 'Germany', 'Denmark', 'Portugal') THEN 'Europe'
+	    WHEN country IN ('Brazil') THEN 'South America'
+            WHEN country IN ('Italy', 'Belgium', 'Germany', 'Denmark', 'Portugal') THEN 'Europe'
     	    ELSE 'Other Regions'
          END AS region
 	FROM customers
@@ -38,7 +38,7 @@ FROM sub
 GROUP BY 1
 ORDER BY 2 DESC
 
----2.Total spending by each customer in the USA in 2010.
+---2.Total spending by each customer in the USA in 2010 and Ranked from the highest paying customers to the lowest.
 
 WITH invoice_y2010 AS (
       SELECT -- factInvoices
