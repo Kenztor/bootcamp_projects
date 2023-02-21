@@ -89,28 +89,28 @@ INSERT INTO serviceType VALUES
   ---1.Total Spend in 2023?
   
 SELECT
-	 STRFTIME('%Y', order_date) AS year,
-	 SUM(price) AS total_spend
+  STRFTIME('%Y', order_date) AS year,
+  SUM(price) AS total_spend
 FROM orders
 WHERE  STRFTIME('%Y', order_date) = '2023';
   
 ---2.Top Spend in 2023 by Region?
 
-WITH stores_y2023 AS	(
+WITH stores_y2023 AS (
 		SELECT 
-  			od.order_date,
-  			od.quantity,
-  			od.price as price,
-  			st.store_id, 
-  			st.store_region as store_region
+  		  od.order_date,
+  		  od.quantity,
+  		  od.price as price,
+  	          st.store_id, 
+  		  st.store_region as store_region
   		FROM orders od
   		JOIN stores st ON  od.store_id = st.store_id
   		WHERE STRFTIME('%Y', od.order_date) = '2023'  
 )
 
 SELECT
-	store_region,
-	SUM(price) as Total_Spend
+  store_region,
+  SUM(price) as Total_Spend
 FROM stores_y2023
 GROUP BY store_region
 order BY Total_Spend DESC;
@@ -118,7 +118,7 @@ order BY Total_Spend DESC;
 ---3.Which gender of the customer spends the most on our store?
 
 SELECT 
-	cu.customer_gender,
+  cu.customer_gender,
   SUM(od.price) as Total_Spend
 FROM orders od
 JOIN customers cu on od.customer_id = cu.customer_id
