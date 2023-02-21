@@ -78,8 +78,33 @@ JOIN invoice_y2010 AS i ON u.customerid = i.customerid
 GROUP BY 1,2,3
 ORDER BY 4 DESC -- descending high to low
 
+---3.The total number of songs included in each genre, excluding Jazz and genres with more than 100 songs.
 
----3.
+WITH genres_notjazz AS (
+		SELECT
+		   ar.name AS artist_name,
+		   al.title,
+		   tr.name AS track_name,
+		   tr.milliseconds,
+		   tr.bytes,
+		   ge.name AS genre_name
+		FROM artists ar 
+		JOIN albums  al ON ar.artistid = al.artistid
+		JOIN tracks  tr ON tr.albumid  = al.albumid
+		JOIN genres  ge ON ge.genreid  = tr.genreid
+		WHERE ge.name <> 'Jazz' -- OKAY
+)
+
+SELECT
+   genre_name,
+   COUNT(*) AS n_tracks
+FROM genres_notjazz
+GROUP BY genre_name
+HAVING COUNT(*) > 100
+ORDER BY n_tracks DESC
+
+
+
 
 
 
